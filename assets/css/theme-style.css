@@ -1,0 +1,13 @@
+#front-page-banner{
+  height: 40vh;
+}
+
+#menu{
+  border: 1px solid black;
+  text-align: center;
+}
+
+#menu ul{
+  list-style: none;
+  display: inline-block;
+}

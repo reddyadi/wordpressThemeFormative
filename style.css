@@ -1,0 +1,20 @@
+/*
+Every wordpress site needs to include a style.css and an index.html in the root directory.
+Your this style.css is a bit different than our normal styles.
+This one has the configurations for our actual theme.
+You have to include all of the stuff which is listed bellow as a commen
+at the beginning of the file.
+All of it must be unique to your new theme as you don't want it to reference
+someone else's theme
+If you want a screenshot on your theme, include an image with the name screenshot.png in the root directory
+
+Theme Name: Formative One CustomTheme
+Author: Aditya Reddy
+Description: A custom theme built for Formative One of Module 4.
+Version: 0.0.1
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: custom, yoobee, bootstrap, formative
+Text Domain: formativeOneCustomTheme
+
+*/
