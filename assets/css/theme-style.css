@@ -1,5 +1,8 @@
 #front-page-banner{
   height: 40vh;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 #menu{
@@ -10,4 +13,26 @@
 #menu ul{
   list-style: none;
   display: inline-block;
+}
+
+.icon-social-media{
+  display: inline-block;
+  font-size: 4em;
+  padding: 1em;
+}
+
+.icon-list{
+  list-style: none;
+  text-align: center;
+}
+
+.home-bx-height{
+  border: 1px solid black;
+}
+.comfortaa{
+  font-family: 'Comfortaa', cursive;
+}
+
+.poiret{
+  font-family: 'Poiret One', cursive;
 }

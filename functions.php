@@ -1,22 +1,10 @@
 <?php
-/*
-    This file holds all the functionality of our theme.
-    It will be different on every theme you create.
-*/
 
-/*
-    What we are doing bellow is adding our bootstrap styles into our theme.
-    We can't do it the normal way which we have done in the past, but rather add it into the wp_head or wp_footer sections
-
-    Whenever we work in the functions.php file, we need to create a function to tell it what to do
-    and then tell wordpress what loading que do you want that function to be a part of.
-    This one bellow is adding in our css and js into the scripts que which gets loaded when the page loads
-    https://codex.wordpress.org/Plugin_API/Action_Reference/wp_enqueue_scripts
-*/
 function addCustomThemeStyles(){
     // Style
     wp_enqueue_style('bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css', array(), '4.1.3', 'all');
     wp_enqueue_style('style', get_template_directory_uri() . '/assets/css/theme-style.css', array(), '0.0.2', 'all');
+    wp_enqueue_style('font-awesome', get_template_directory_uri() . '/assets/font-awesome/css/all.css');
 
     // Scripts
     wp_enqueue_script('jquery');
@@ -29,9 +17,12 @@ add_action('wp_enqueue_scripts', 'addCustomThemeStyles');
 function addCustomMenus() {
   add_theme_support('menus');
   register_nav_menu('header_nav', 'This is the navigation that appears at the top of the page');
+  register_nav_menu('footer_nav', 'This is the navigation that appears at the bottom of the page');
 }
 add_action('init', 'addCustomMenus');
 
+/*Adding Navwalker to utilise bootstrap nav*/
+require_once get_template_directory() . '/addons/class-wp-bootstrap-navwalker.php';
 
 /*Registering Header Image holder*/
 function create_header_tab(){
@@ -40,12 +31,12 @@ function create_header_tab(){
     'defaultImage' => array(
       'url' => get_template_directory_uri() . '/assets/images/default.jpg',
       'thumbnail_url' => get_template_directory_uri() . 'assets/images/default.jpg',
-      'description' => __('defaultImage', '18wdwu02customtheme')
+      'description' => __('defaultImage', 'formativeOneCustomTheme')
     )
   ));
   $defaultImage = array(
     'default-image' => get_template_directory_uri() . '/assets/images/default.jpg',
-    'width' => 1280,
+    'width' => 1580,
     'height' => 720,
     'header-text' => false
   );
@@ -66,6 +57,11 @@ function create_header_tab(){
 }
 add_action('init', 'create_header_tab');
 
+/*Adding custom_customizer.php to functions*/
+require get_parent_theme_file_path('./addons/custom_customizer.php');
+
+
+/* Adding logo feature */
 function custom_logo_create() {
 
   add_theme_support('custom-logo', array(
@@ -76,3 +72,37 @@ function custom_logo_create() {
   ));
 }
 add_action('init', 'custom_logo_create');
+
+function ct_formativeOneCustomTheme_social_array(){
+
+  $social_sites = array(
+    'twitter'       => 'formativeOneCustomTheme_twitter_profile',
+    'facebook'      => 'formativeOneCustomTheme_facebook_profile',
+    'google-plus'   => 'formativeOneCustomTheme_googleplus_profile',
+    'pinterest'     => 'formativeOneCustomTheme_pinterest_profile',
+    'linkedin'      => 'formativeOneCustomTheme_linkedin_profile',
+    'youtube'       => 'formativeOneCustomTheme_youtube_profile',
+    'instagram'     => 'formativeOneCustomTheme_instagram_profile',
+    'flickr'        => 'formativeOneCustomTheme_flickr_profile',
+    'dribbble'      => 'formativeOneCustomTheme_dribbble_profile',
+    'rss'           => 'formativeOneCustomTheme_rss_profile',
+    'yahoo'         => 'formativeOneCustomTheme_yahoo_profile',
+    'behance'       => 'formativeOneCustomTheme_behance_profile',
+    'codepen'       => 'formativeOneCustomTheme_codepen_profile',
+    'github'        => 'formativeOneCustomTheme_github_profile',
+    'slack'         => 'formativeOneCustomTheme_slack_profile',
+    'skype'         => 'formativeOneCustomTheme_skype_profile',
+    'paypal'        => 'formativeOneCustomTheme_paypal_profile',
+    'email-form'    => 'formativeOneCustomTheme_email_form_profile'
+  );
+
+  return apply_filters( 'ct_formativeOneCustomTheme_social_array_filter', $social_sites);
+
+}
+ct_formativeOneCustomTheme_social_array();
+
+/*Adding custom post to dashboard*/
+require get_parent_theme_file_path('./addons/custom_post_types.php');
+
+/*Adding metaboxes to theme*/
+require get_parent_theme_file_path('./addons/custom_fields.php');
